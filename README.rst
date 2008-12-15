@@ -2,6 +2,40 @@
 python-capitolwords
 ===================
 
+Python library for interacting with Capitol Words API.
+
+Capitol Words provides access to the most commonly used words in Congressional 
+Record each day. (http://www.capitolwords.org/api/)
+
+python-capitolwords is a project of Sunlight Labs (c) 2008.  
+Written by James Turk <jturk@sunlightfoundation.com>.
+
+All code is under a BSD-style license, see LICENSE for details.
+
+Homepage: http://pypi.python.org/pypi/python-capitolwords/
+
+Source: http://github.com/sunlightlabs/python-capitolwords/
+
+
+Requirements
+============
+
+python >= 2.4
+
+simplejson >= 1.8 (not required with python 2.6, will use built in json module)
+
+
+Installation
+============
+To install run
+
+    ``python setup.py install``
+
+which will install the bindings into python's site-packages directory.
+
+Usage
+=====
+
 All that is required to start using the API is for it to be imported, no API key is
 required for Capitol Words.
 
@@ -15,7 +49,7 @@ All Capitol Words API methods return a WordResult object with three attributes:
     * word_count    - the number of times ``word`` was said on ``word_date``
 
 dailysum
-========
+--------
 
 ``dailysum(word, year, month=None, day=None, endyear=None, endmonth=None, endday=None)``
 
@@ -59,7 +93,7 @@ for all days in a given range of days:
     2008-04-03 5
 
 wordofday
-=========
+---------
 
 ``dailysum(year=None, month=None, day=None, endyear=None, endmonth=None, endday=None, maxrows=1)``
 

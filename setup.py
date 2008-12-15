@@ -1,15 +1,18 @@
 from distutils.core import setup
 from capitolwords import __version__,__license__,__doc__
 
+license_text = open('LICENSE').read()
+long_description = open('README.rst').read()
+
 setup(name="python-capitolwords",
       version=__version__,
       py_modules=["capitolwords"],
       description="Libraries for interacting with the Capitol Words API",
       author="James Turk",
       author_email = "jturk@sunlightfoundation.com",
-      license=__license__,
+      license=license_text,
       url="http://github.com/sunlightlabs/python-capitolwords/",
-      long_description=__doc__,
+      long_description=long_description,
       platforms=["any"],
       classifiers=["Development Status :: 3 - Alpha",
                    "Intended Audience :: Developers",
