@@ -1,0 +1,24 @@
+from distutils.core import setup
+from capitolwords import __version__,__license__,__doc__
+
+setup(name="python-capitolwords",
+      version=__version__,
+      py_modules=["capitolwords"],
+      description="Libraries for interacting with the Capitol Words API",
+      author="James Turk",
+      author_email = "jturk@sunlightfoundation.com",
+      license=__license__,
+      url="http://github.com/sunlightlabs/python-capitolwords/",
+      long_description=__doc__,
+      platforms=["any"],
+      classifiers=["Development Status :: 3 - Alpha",
+                   "Intended Audience :: Developers",
+                   "License :: OSI Approved :: BSD License",
+                   "Natural Language :: English",
+                   "Operating System :: OS Independent",
+                   "Programming Language :: Python",
+                   "Topic :: Software Development :: Libraries :: Python Modules",
+                   ],
+       install_requires=["simplejson >= 1.8"]
+      )
+
