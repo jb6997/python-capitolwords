@@ -7,7 +7,7 @@ Python library for interacting with Capitol Words API.
 Capitol Words provides access to the most commonly used words in Congressional 
 Record each day. (http://www.capitolwords.org/api/)
 
-python-capitolwords is a project of Sunlight Labs (c) 2008.  
+python-capitolwords is a project of Sunlight Labs (c) 2009
 Written by James Turk <jturk@sunlightfoundation.com>.
 
 All code is under a BSD-style license, see LICENSE for details.
