@@ -60,7 +60,7 @@ May 22nd 2008:
 
     >>> wr = capitolwords.dailysum('transparency', 2008, 5, 22)[0]
     >>> print wr.word_count
-    24
+    47
 
 Using ``dailysum`` to find out how many times 'transparency' was said
 in May 2008:
@@ -68,18 +68,20 @@ in May 2008:
     >>> for wr in capitolwords.dailysum('transparency', 2008, 5):
     ...     print wr.word_date, wr.word_count
     2008-05-23 3
-    2008-05-22 24
-    2008-05-21 3
+    2008-05-22 47
+    2008-05-21 13
+    2008-05-20 18
     2008-05-19 25
-    2008-05-15 15
-    2008-05-14 17
-    2008-05-13 13
+    2008-05-15 22
+    2008-05-14 22
+    2008-05-13 17
     2008-05-12 10
     2008-05-08 8
-    2008-05-07 9
-    2008-05-06 5
+    2008-05-07 11
+    2008-05-06 6
+    2008-05-05 1
     2008-05-02 1
-    2008-05-01 3
+    2008-05-01 11
 
 Using ``dailysum`` to find out how many times 'transparency' was said
 for all days in a given range of days:
@@ -90,7 +92,7 @@ for all days in a given range of days:
     2008-04-09 8
     2008-04-08 5
     2008-04-07 4
-    2008-04-03 5
+    2008-04-03 8
 
 wordofday
 ---------
@@ -104,42 +106,43 @@ Using ``wordofday`` to get the top 5 words for April 3rd, 2008:
 
     >>> for w in capitolwords.wordofday(2008, 4, 3, maxrows=5):
     ...     print w.word, w.word_count
-    housing 1285
-    director 973
-    enterprise 843
-    mortgage 773
-    loan 665
+    sergeant 1706
+    housing 1382
+    director 976
+    corporal 899
+    mortgage 868
 
 Using ``wordofday`` to get the top words for every day in May 2008:
 
     >>> for w in capitolwords.wordofday(2008, 5):
     ...     print w.word, w.word_count, w.word_date
     conrad 3 2008-05-29
-    webb 3 2008-05-27
+    recess 3 2008-05-27
     name 146 2008-05-23
-    defense 2122 2008-05-22
-    tax 510 2008-05-21
-    johnson 37 2008-05-20
-    assistance 625 2008-05-19
+    defense 2411 2008-05-22
+    tax 1109 2008-05-21
+    assistance 1004 2008-05-20
+    assistance 645 2008-05-19
     food 40 2008-05-16
-    iraq 521 2008-05-15
-    farm 386 2008-05-14
-    food 1338 2008-05-13
+    iraq 586 2008-05-15
+    budget 756 2008-05-14
+    assistance 1402 2008-05-13
     oil 546 2008-05-12
-    housing 1207 2008-05-08
-    research 271 2008-05-07
-    insurance 495 2008-05-06
-    school 83 2008-05-05
-    housing 81 2008-05-02
-    health 346 2008-05-01
-    
+    housing 1418 2008-05-08
+    insurance 591 2008-05-07
+    insurance 631 2008-05-06
+    day 95 2008-05-05
+    housing 82 2008-05-02
+    health 879 2008-05-01
+
 Using ``wordofday`` to get the word of day across a given range:
 
     >>> for w in capitolwords.wordofday(2008, 4, 3, 2008, 4, 10):
     ...     print w.word, w.word_count, w.word_date
-    judge 214 2008-04-10
-    health 366 2008-04-09
-    health 237 2008-04-08
+    energy 465 2008-04-10
+    health 380 2008-04-09
+    energy 265 2008-04-08
     housing 540 2008-04-07
-    energy 152 2008-04-04
-    housing 1285 2008-04-03
+    energy 244 2008-04-04
+    sergeant 1706 2008-04-03
+
