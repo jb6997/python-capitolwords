@@ -45,8 +45,8 @@ Import ``capitolwords``:
     
 All Capitol Words API methods return a WordResult object with three attributes:
     * word          - a word in question
-    * word_date     - a particular date
-    * word_count    - the number of times ``word`` was said on ``word_date``
+    * word_date     - a particular date **[not available for lawmaker]**
+    * word_count    - the number of times ``word`` was said
 
 dailysum
 --------
@@ -99,8 +99,7 @@ wordofday
 
 ``dailysum(year=None, month=None, day=None, endyear=None, endmonth=None, endday=None, maxrows=1)``
 
-wordofday returns a list of records representing the most commonly used words
-on a given day.
+wordofday returns a list of records representing the most commonly used words for given dates.
 
 Using ``wordofday`` to get the top 5 words for April 3rd, 2008:
 
@@ -146,3 +145,37 @@ Using ``wordofday`` to get the word of day across a given range:
     energy 244 2008-04-04
     sergeant 1706 2008-04-03
 
+
+lawmaker
+--------
+
+``lawmaker(lawmaker_id, year=None, month=None, day=None, endyear=None, endmonth=None, endday=None, maxrows=1)``
+
+lawmaker returns a list of records representing a lawmakers most said words
+
+lawmakers are referenced by their `Bioguide ID`_.  Bioguide IDs can be obtained from the `Sunlight Labs API`_.
+
+**[Note: the word_date attribute of the records is not populated as it does not apply to this method]**
+
+Using ``lawmaker`` to get the words Mitch McConnell said the most on October 10th, 2008:
+
+    >>> for w in capitolwords.lawmaker('M000355', 2008, 12, 12, maxrows=5):
+    ...     print w.word, w.word_count
+    dole 23
+    women 16
+    elizabeth 13
+    included 11
+    north 11
+
+Using ``lawmaker`` to get the words Mitch McConnell said the most across a given range:
+
+    >>> for w in capitolwords.lawmaker('M000355', 2008, 4, 3, 2008, 4, 10, maxrows=5):
+    ...     print w.word, w.word_count
+    lance 24
+    home 21
+    iraq 21
+    colombia 19
+    nominee 17
+
+.. _`Bioguide ID`: http://bioguide.congress.gov/
+.. _`Sunlight Labs API`: http://services.sunlightlabs.com/api/
