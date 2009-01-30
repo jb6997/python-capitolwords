@@ -21,9 +21,14 @@ class CwodApiError(Exception):
 class WordResult(object):
     def __init__(self, d):
         self.__dict__ = d
-        
+        if not hasattr(self, 'word_date'):
+            self.word_date = None
+
     def __str__(self):
-        return '%s said %s times on %s' % (self.word, self.word_count, self.word_date)
+        if self.word_date:
+            return '%s said %s times on %s' % (self.word, self.word_count, self.word_date)
+        else:
+            return '%s said %s times' % (self.word, self.word_count)
 
 def _get_json(url):
     try:
@@ -34,27 +39,8 @@ def _get_json(url):
     except ValueError, e:
         raise CwodApiError('Invalid Response')
 
-def dailysum(word, year, month=None, day=None,
-             endyear=None, endmonth=None, endday=None):
-    
-    # can't specify only part of the range
-    if ((endyear or endmonth or endday)
-        and not (endyear and endmonth and endday)):
-        raise CwodApiError('Invalid number of parameters')
-
-    # join all supplied params together with /s
-    params =  (word, year, month, day, endyear, endmonth, endday)
-    paramstr = '/'.join([str(p) for p in params if p])
-    
-    # get json
-    url = 'http://capitolwords.org/api/word/%s/feed.json' % paramstr
-    result = _get_json(url)
-    return [WordResult(r) for r in result]
-
-def wordofday(year=None, month=None, day=None,
-              endyear=None, endmonth=None, endday=None, maxrows=1):
-    
-    # can't specify only part of the range
+def _params_to_paramstr(year, month, day, endyear, endmonth, endday):
+   # can't specify only part of the range
     if ((endyear or endmonth or endday)
         and not (endyear and endmonth and endday)):
         raise CwodApiError('Invalid number of parameters')
@@ -62,10 +48,41 @@ def wordofday(year=None, month=None, day=None,
     # join all supplied params together with /s
     params =  (year, month, day, endyear, endmonth, endday)
     paramstr = '/'.join([str(p) for p in params if p])
-    
+
     if not paramstr:
         paramstr = 'latest'
+
+    return paramstr
+
+
+def dailysum(word, year, month=None, day=None,
+             endyear=None, endmonth=None, endday=None):
+
+    paramstr = _params_to_paramstr(year, month, day, endyear, endmonth, endday)
+
+    # get json
+    url = 'http://capitolwords.org/api/word/%s/%s/feed.json' % (word, paramstr)
+    result = _get_json(url)
+    return [WordResult(r) for r in result]
+
+def wordofday(year=None, month=None, day=None,
+              endyear=None, endmonth=None, endday=None, maxrows=1):
+
+    paramstr = _params_to_paramstr(year, month, day, endyear, endmonth, endday)
+
     url = 'http://capitolwords.org/api/wod/%s/top%s.json' % (paramstr,
                                                              maxrows)
+    result = _get_json(url)
+    return [WordResult(r) for r in result]
+
+
+def lawmaker(lawmaker_id, year=None, month=None, day=None,
+             endyear=None, endmonth=None, endday=None, maxrows=1):
+
+    paramstr = _params_to_paramstr(year, month, day, endyear, endmonth, endday)
+
+    url = 'http://capitolwords.org/api/lawmaker/%s/%s/top%s.json' % (lawmaker_id,
+                                                                     paramstr,
+                                                                     maxrows)
     result = _get_json(url)
     return [WordResult(r) for r in result]
